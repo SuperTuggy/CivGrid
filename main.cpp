@@ -6,26 +6,26 @@
 
 
 
-int main (int argc, char* argv[]) {
-    
-   if (argc < 2) {
-    std::cerr << "Error thingy magigly" << std::endl;
-    return 1;
-   }
+int main(){
 
-  try {
-    osmium::io::Reader my_file(argv[1]);
-    DataExtractor handler;
+  //TODO: Allows user to choose path from the file system
 
-    osmium::apply(my_file, handler);
-    std::cout << "The number of nodes in the file are: " << handler.get_node_count() << std::endl;
-    std::cout << "The number of ways in the file are: " << handler.get_way_count() << std::endl;
-    std::cout << "The number of relations in the file are: " << handler.get_relation_count() << std::endl;
+  std::string path = "/home/woofwoofmachine/github/CivGrid/data/new-york-260103.osm.pbf";
+
+  try{
+    osmium::io::Reader my_file(path);
+    DataExtractor extractor;
+
+    osmium::apply(my_file, extractor);
+    std::cout << "The number of nodes in the file are: " << extractor.get_node_count() << std::endl;
+    std::cout << "The number of ways in the file are: " << extractor.get_way_count() << std::endl;
+    std::cout << "The number of relations in the file are: " << extractor.get_relation_count() << std::endl;
     my_file.close();
 
-    
 
-  } catch (const std::exception& e) {
+
+  }
+  catch (const std::exception& e){
     std::cerr << "Error" << e.what() << std::endl;
 
   }

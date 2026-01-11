@@ -1,21 +1,28 @@
 cmake_minimum_required(VERSION 3.28)
-project(CivGrid)
+project(CivGrid LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-#include directories
-include_directories(/home/meowmeowmachine/libosmium/include)
+# --- Dependencies ---
+add_subdirectory(external/nativefiledialog)
 
-#Add the executable 
+# --- Executable ---
+add_executable(CivGrid
+    main.cpp
+    DataExtraction/DataExtraction.cpp
+)
 
-add_executable(CivGrid 
+# --- Includes ---
+target_include_directories(CivGrid PRIVATE
+    ${LIBOSMIUM_INCLUDE_DIR}
+)
 
-/home/meowmeowmachine/CivGridMap/source/DataExtraction/DataExtraction.cpp
-
-main.cpp)
-
-target_link_libraries(CivGrid
+# --- Linking ---
+target_link_libraries(CivGrid PRIVATE
     bz2
     z
     expat
+    nfd
 )

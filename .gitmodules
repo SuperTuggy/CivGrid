@@ -1,0 +1,3 @@
+[submodule "external/external/nativefiledialog"]
+	path = external/external/nativefiledialog
+	url = https://github.com/mlabbe/nativefiledialog.git
