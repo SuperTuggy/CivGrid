@@ -12,6 +12,7 @@ add_subdirectory(external/nativefiledialog)
 add_executable(CivGrid
     main.cpp
     DataExtraction/DataExtraction.cpp
+    parser/parser.cpp
 )
 
 # --- Includes ---
