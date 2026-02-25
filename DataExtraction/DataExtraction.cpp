@@ -1,8 +1,8 @@
 #include "DataExtraction.hpp"
-#include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <osmium/osm/node.hpp>
+#include <osmium/osm/way.hpp>
 
 using json = nlohmann::json;
 
@@ -12,14 +12,26 @@ DataExtractor::DataExtractor()
 }
 
 void DataExtractor::node(const osmium::Node &n) {
-  Node nodes {
-    nodes.id;
-    nodes.lat;
-    nodes.lon;
-  };
+  Node node;
 
+  node.id = n.id();
+  node.x = n.location().lon();
+  node.y = n.location().lat();
+
+  nodes[node.id] = node;
   node_count++;
 }
-void DataExtractor::way(const osmium::Way &) {}
+void DataExtractor::way(const osmium::Way &w) {
+  way_count++;
+
+  const char *highway = w.tags()["highway"];
+
+  if (!highway) {
+    return;
+  }
+
+  for (size_t i = 0; i + 1 < w.nodes().size(); i++) {
+  }
+}
 
 void DataExtractor::relation(const osmium::Relation &) { relation_count++; }

@@ -9,7 +9,7 @@ int main() {
   // TODO: Allow user to choose path from the file system
 
   std::string path =
-      "/home/woofwoofmachine/dev/projects/CivGrid/data/new-york-260103.osm.pbf";
+      "home/woofwoofmachine/dev/projects/CivGrid/data/new-york-260103.osm.pbf";
 
   try {
     osmium::io::Reader my_file(path);
@@ -17,9 +17,8 @@ int main() {
 
     osmium::apply(my_file, extractor);
     std::cout << "The number of nodes in the file are: "
-              << extractor.get_node_count() << "and its latitudes are"
-              << extractor.lat << std::endl;
-    std::cout << "The number of ways in the file are: "
+              << extractor.get_node_count() << std::endl
+              << "The number of ways in the file are: "
               << extractor.get_way_count() << std::endl;
     std::cout << "The number of relations in the file are: "
               << extractor.get_relation_count() << std::endl;
