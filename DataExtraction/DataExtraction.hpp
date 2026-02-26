@@ -1,13 +1,16 @@
 #pragma once
-#include <cstdint>
+#include "../mathlib/GeoMath.hpp"
 #include <osmium/handler.hpp>
 #include <osmium/osm/types.hpp>
 #include <unordered_map>
+#include <vector>
 
 struct Node {
   osmium::object_id_type id = 0;
   double x = 0;
   double y = 0;
+  std::unordered_map<osmium::object_id_type, Node> nodes;
+  std::vector<osmium::object_id_type> Neighbors;
 };
 
 class DataExtractor : public osmium::handler::Handler {
@@ -15,7 +18,6 @@ private:
   int node_count = 0;
   int way_count = 0;
   int relation_count = 0;
-  std::unordered_map<osmium::object_id_type, Node> nodes;
 
 public:
   DataExtractor();

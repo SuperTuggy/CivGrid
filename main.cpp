@@ -9,8 +9,7 @@ int main() {
   // TODO: Allow user to choose path from the file system
 
   std::string path =
-      "home/woofwoofmachine/dev/projects/CivGrid/data/new-york-260103.osm.pbf";
-
+      "/home/woofwoofmachine/dev/projects/CivGrid/data/new-york-260103.osm.pbf";
   try {
     osmium::io::Reader my_file(path);
     DataExtractor extractor;

@@ -1,9 +1,9 @@
 #include "DataExtraction.hpp"
+#include "../mathlib/GeoMath.hpp"
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <osmium/osm/node.hpp>
 #include <osmium/osm/way.hpp>
-
 using json = nlohmann::json;
 
 DataExtractor::DataExtractor()
@@ -18,7 +18,7 @@ void DataExtractor::node(const osmium::Node &n) {
   node.x = n.location().lon();
   node.y = n.location().lat();
 
-  nodes[node.id] = node;
+  node.nodes[node.id] = node;
   node_count++;
 }
 void DataExtractor::way(const osmium::Way &w) {
