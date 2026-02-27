@@ -2,15 +2,13 @@
 #include "../mathlib/GeoMath.hpp"
 #include <osmium/handler.hpp>
 #include <osmium/osm/types.hpp>
-#include <unordered_map>
 #include <vector>
 
 struct Node {
+  GeoMath::Point position;
   osmium::object_id_type id = 0;
-  double x = 0;
-  double y = 0;
-  std::unordered_map<osmium::object_id_type, Node> nodes;
-  std::vector<osmium::object_id_type> Neighbors;
+  std::pair<osmium::object_id_type, GeoMath::Point> nodes;
+  std::vector<osmium::object_id_type> highways;
 };
 
 class DataExtractor : public osmium::handler::Handler {
@@ -22,6 +20,7 @@ private:
 public:
   DataExtractor();
 
+  Node nodes;
   void node(const osmium::Node &);
   void way(const osmium::Way &);
   void relation(const osmium::Relation &);

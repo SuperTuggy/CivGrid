@@ -1,12 +1,13 @@
 #pragma once
 #include <cmath>
 #include <numbers>
+
+namespace GeoMath {
 struct Point {
   double x;
   double y;
 };
 
-namespace GeoMath {
 inline double degreeToRadians(double degrees) {
   double radians = degrees * std::numbers::pi / 180;
   return radians;
