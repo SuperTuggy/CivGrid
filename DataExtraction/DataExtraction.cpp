@@ -16,8 +16,8 @@ void DataExtractor::node(const osmium::Node &n) {
   nodes.position.x = n.location().lon();
   nodes.position.y = n.location().lat();
 
-  nodes.nodes.first = n.id();
-  nodes.nodes.second = nodes.position;
+  nodes.nodes.emplace_back(n.id(),
+                           GeoMath::Point{nodes.position.x, nodes.position.y});
 
   node_count++;
 }

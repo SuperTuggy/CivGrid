@@ -7,7 +7,7 @@
 struct Node {
   GeoMath::Point position;
   osmium::object_id_type id = 0;
-  std::pair<osmium::object_id_type, GeoMath::Point> nodes;
+  std::vector<std::pair<osmium::object_id_type, GeoMath::Point>> nodes;
   std::vector<osmium::object_id_type> highways;
 };
 
